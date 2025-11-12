@@ -7,13 +7,14 @@ pipeline {
     GIT_REPO = 'https://github.com/kganeshdev/car-rental-app.git'  // your GitHub repo
   }
 
-  stages {
-    stage('Clone Repository') {
-      steps {
-        echo "Cloning repository from GitHub..."
-        git branch: 'main', url: "${GIT_REPO}"
-      }
-    }
+  stage('Clone Repository') {
+  steps {
+    echo "Cloning repository from GitHub..."
+    git branch: 'main',
+        credentialsId: 'github-creds',
+        url: 'https://github.com/kganeshdev/car-rental-app.git'
+     }
+   }
 
     stage('Build Docker Images') {
       steps {

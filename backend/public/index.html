@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🚗 Car Rental Dashboard</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: url('https://images.unsplash.com/photo-1503736334956-4c8f8e92946d') center/cover no-repeat;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      color: white;
+    }
+
+    .box {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    h1 {
+      color: #ffcb05;
+    }
+
+    a {
+      display: block;
+      margin: 15px;
+      padding: 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: black;
+      background: #ffcb05;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    a:hover {
+      background: #f5b800;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>🚘 Car Rental Dashboard</h1>
+    <a href="/api/users?view=html">👤 View Users</a>
+    <a href="/api/cars?view=html">🚗 View Cars</a>
+    <a href="/api/bookings?view=html">🧾 View Bookings</a>
+  </div>
+</body>
+</html>

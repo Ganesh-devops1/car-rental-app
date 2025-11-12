@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>🚘 Book a Car | Car Rental</title>
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        background: url('https://images.unsplash.com/photo-1493238792000-8113da705763') 
+          no-repeat center center fixed;
+        background-size: cover;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        backdrop-filter: blur(3px);
+      }
+
+      .container {
+        background: rgba(0, 0, 0, 0.75);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        width: 400px;
+        text-align: center;
+      }
+
+      h2 {
+        color: #00ffcc;
+        margin-bottom: 20px;
+      }
+
+      input {
+        width: 90%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+
+      button {
+        background-color: #00ffcc;
+        color: black;
+        font-weight: bold;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #00ccaa;
+        transform: scale(1.05);
+      }
+
+      pre {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 10px;
+        border-radius: 8px;
+        text-align: left;
+        color: #ffcb05;
+        height: 120px;
+        overflow-y: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>🚘 Book a Car</h2>
+      <form id="bookingForm">
+        <input type="text" id="user" placeholder="User name" required />
+        <input type="text" id="car" placeholder="Car name" required />
+        <input type="date" id="fromDate" required />
+        <input type="date" id="toDate" required />
+        <button type="submit">Book Car</button>
+      </form>
+      <h3>Response:</h3>
+      <pre id="output"></pre>
+    </div>
+
+    <script>
+      document.getElementById("bookingForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const user = document.getElementById("user").value;
+        const car = document.getElementById("car").value;
+        const fromDate = document.getElementById("fromDate").value;
+        const toDate = document.getElementById("toDate").value;
+
+        try {
+          const res = await fetch("http://localhost:5000/api/bookings", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ user, car, fromDate, toDate }),
+          });
+          const data = await res.json();
+          document.getElementById("output").innerText = JSON.stringify(data, null, 2);
+        } catch (error) {
+          document.getElementById("output").innerText = "❌ Error: " + error;
+        }
+      });
+    </script>
+  </body>
+</html>

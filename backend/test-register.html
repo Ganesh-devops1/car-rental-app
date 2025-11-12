@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>🚗 Register User | Car Rental</title>
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        background: url('https://images.unsplash.com/photo-1502877338535-766e1452684a') 
+          no-repeat center center fixed;
+        background-size: cover;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        backdrop-filter: blur(3px);
+      }
+
+      .container {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        width: 350px;
+        text-align: center;
+      }
+
+      h2 {
+        margin-bottom: 20px;
+        color: #ffcb05;
+      }
+
+      input {
+        width: 90%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        font-size: 15px;
+      }
+
+      button {
+        background-color: #ffcb05;
+        color: black;
+        font-weight: bold;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #f5b800;
+        transform: scale(1.05);
+      }
+
+      pre {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 10px;
+        border-radius: 8px;
+        text-align: left;
+        color: #00ffcc;
+        height: 120px;
+        overflow-y: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>🚗 Register User</h2>
+      <form id="registerForm">
+        <input type="text" id="name" placeholder="Enter your name" required />
+        <input type="email" id="email" placeholder="Enter your email" required />
+        <button type="submit">Register</button>
+      </form>
+      <h3>Response:</h3>
+      <pre id="output"></pre>
+    </div>
+
+    <script>
+      document.getElementById("registerForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+
+        try {
+          const res = await fetch("http://localhost:5000/api/users/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, email }),
+          });
+          const data = await res.json();
+          document.getElementById("output").innerText = JSON.stringify(data, null, 2);
+        } catch (error) {
+          document.getElementById("output").innerText = "❌ Error: " + error;
+        }
+      });
+    </script>
+  </body>
+</html>

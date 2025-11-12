@@ -12,7 +12,7 @@ pipeline {
     echo "Cloning repository from GitHub..."
     git branch: 'main',
         credentialsId: 'github-creds',
-        url: 'https://github.com/kganeshdev/car-rental-app.git'
+        url: 'https://github.com/Ganesh-devops1/car-rental-app.git'
      }
    }
 
